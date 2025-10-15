@@ -47,10 +47,26 @@ module "app1" {
   resource_group_name   = module.rg1.resource_group_id
   location              = "East US"
   app_service_plan_id   = module.asp1.app_service_plan_id
-  allow_ip_rule_name    = "allow-ip"
-  allow_tm_rule_name    = "allow-tm"
-  verification_agent_ip = "18.153.146.156"
-  tags                  = var.tags
+  verification_agent_ip = "18.153.146.156" # IP address of the verification agent
+  allow_ip_rule_name    = "allow-ip"       # Name of the IP restriction rule for verification agent
+  allow_tm_rule_name    = "allow-tm"       # Name of the IP restriction rule for Traffic Manager
+  ip_restrictions = [
+    {
+      name        = "allow-ip"
+      ip_address  = "18.153.146.156"
+      service_tag = null
+      action      = "Allow"
+      priority    = 100
+    },
+    {
+      name        = "allow-tm"
+      ip_address  = null
+      service_tag = "AzureTrafficManager"
+      action      = "Allow"
+      priority    = 200
+    }
+  ]
+  tags = var.tags
 }
 
 module "app2" {
@@ -59,10 +75,26 @@ module "app2" {
   resource_group_name   = module.rg2.resource_group_id
   location              = "West US"
   app_service_plan_id   = module.asp2.app_service_plan_id
-  allow_ip_rule_name    = "allow-ip"
-  allow_tm_rule_name    = "allow-tm"
-  verification_agent_ip = "18.153.146.156"
-  tags                  = var.tags
+  verification_agent_ip = "18.153.146.156" # IP address of the verification agent
+  allow_ip_rule_name    = "allow-ip"       # Name of the IP restriction rule for verification agent
+  allow_tm_rule_name    = "allow-tm"       # Name of the IP restriction rule for Traffic Manager
+  ip_restrictions = [
+    {
+      name        = "allow-ip"
+      ip_address  = "18.153.146.156"
+      service_tag = null
+      action      = "Allow"
+      priority    = 100
+    },
+    {
+      name        = "allow-tm"
+      ip_address  = null
+      service_tag = "AzureTrafficManager"
+      action      = "Allow"
+      priority    = 200
+    }
+  ]
+  tags = var.tags
 }
 
 module "traffic_manager" {
@@ -71,6 +103,9 @@ module "traffic_manager" {
   resource_group_name = module.rg3.resource_group_id
   routing_method      = "Performance"
   dns_name            = "cmaz-ya42kk4d-mod5-traf"
-  app_service_ids     = [module.app1.app_service_id, module.app2.app_service_id]
-  tags                = var.tags
+  app_service_ids = {
+    app1 = module.app1.app_service_id
+    app2 = module.app2.app_service_id
+  }
+  tags = var.tags
 }

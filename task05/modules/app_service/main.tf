@@ -6,18 +6,15 @@ resource "azurerm_windows_web_app" "app" {
   tags                = var.tags
 
   site_config {
-    ip_restriction {
-      name       = var.allow_ip_rule_name
-      ip_address = var.verification_agent_ip
-      action     = "Allow"
-      priority   = 100
-    }
-
-    ip_restriction {
-      name        = var.allow_tm_rule_name
-      service_tag = "AzureTrafficManager"
-      action      = "Allow"
-      priority    = 200
+    dynamic "ip_restriction" {
+      for_each = var.ip_restrictions
+      content {
+        name        = ip_restriction.value.name
+        ip_address  = ip_restriction.value.ip_address
+        service_tag = ip_restriction.value.service_tag
+        action      = ip_restriction.value.action
+        priority    = ip_restriction.value.priority
+      }
     }
   }
 }

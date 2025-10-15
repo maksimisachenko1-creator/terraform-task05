@@ -19,8 +19,8 @@ variable "dns_name" {
 }
 
 variable "app_service_ids" {
-  description = "List of App Service IDs to use as Traffic Manager endpoints"
-  type        = list(string)
+  description = "Map of App Service IDs to use as Traffic Manager endpoints"
+  type        = map(string)
 }
 
 variable "tags" {
