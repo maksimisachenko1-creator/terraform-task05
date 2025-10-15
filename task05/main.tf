@@ -42,27 +42,27 @@ module "asp2" {
 }
 
 module "app1" {
-  source              = "./modules/app_service"
-  name                = "cmaz-ya42kk4d-mod5-app-01"
-  resource_group_name = module.rg1.resource_group_id
-  location            = "East US"
-  app_service_plan_id = module.asp1.app_service_plan_id
-  allow_ip_rule_name  = "allow-ip"
-  allow_tm_rule_name  = "allow-tm"
+  source                = "./modules/app_service"
+  name                  = "cmaz-ya42kk4d-mod5-app-01"
+  resource_group_name   = module.rg1.resource_group_id
+  location              = "East US"
+  app_service_plan_id   = module.asp1.app_service_plan_id
+  allow_ip_rule_name    = "allow-ip"
+  allow_tm_rule_name    = "allow-tm"
   verification_agent_ip = "18.153.146.156"
-  tags                = var.tags
+  tags                  = var.tags
 }
 
 module "app2" {
-  source              = "./modules/app_service"
-  name                = "cmaz-ya42kk4d-mod5-app-02"
-  resource_group_name = module.rg2.resource_group_id
-  location            = "West US"
-  app_service_plan_id = module.asp2.app_service_plan_id
-  allow_ip_rule_name  = "allow-ip"
-  allow_tm_rule_name  = "allow-tm"
+  source                = "./modules/app_service"
+  name                  = "cmaz-ya42kk4d-mod5-app-02"
+  resource_group_name   = module.rg2.resource_group_id
+  location              = "West US"
+  app_service_plan_id   = module.asp2.app_service_plan_id
+  allow_ip_rule_name    = "allow-ip"
+  allow_tm_rule_name    = "allow-tm"
   verification_agent_ip = "18.153.146.156"
-  tags                = var.tags
+  tags                  = var.tags
 }
 
 module "traffic_manager" {

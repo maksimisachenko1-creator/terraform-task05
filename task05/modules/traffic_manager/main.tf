@@ -1,6 +1,6 @@
 resource "azurerm_traffic_manager_profile" "tm" {
-  name                = var.name
-  resource_group_name = var.resource_group_name
+  name                   = var.name
+  resource_group_name    = var.resource_group_name
   traffic_routing_method = var.routing_method
   dns_config {
     relative_name = var.dns_name
@@ -15,8 +15,8 @@ resource "azurerm_traffic_manager_profile" "tm" {
 }
 
 resource "azurerm_traffic_manager_azure_endpoint" "tm_endpoints" {
-  count               = length(var.app_service_ids)
-  name                = "endpoint-${count.index}"
-  profile_id          = azurerm_traffic_manager_profile.tm.id
-  target_resource_id  = var.app_service_ids[count.index]
+  count              = length(var.app_service_ids)
+  name               = "endpoint-${count.index}"
+  profile_id         = azurerm_traffic_manager_profile.tm.id
+  target_resource_id = var.app_service_ids[count.index]
 }
