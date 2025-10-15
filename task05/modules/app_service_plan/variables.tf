@@ -14,12 +14,12 @@ variable "location" {
 }
 
 variable "sku_tier" {
-  description = "SKU tier for the App Service Plan"
+  description = "SKU tier for the App Service Plan (e.g., Free, Shared, Basic, Standard, Premium)"
   type        = string
 }
 
 variable "sku_size" {
-  description = "SKU size for the App Service Plan"
+  description = "SKU size for the App Service Plan (e.g., F1, B1, S1, P1v2)"
   type        = string
 }
 

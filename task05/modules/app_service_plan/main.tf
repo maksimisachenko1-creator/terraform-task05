@@ -1,11 +1,8 @@
-resource "azurerm_app_service_plan" "asp" {
+resource "azurerm_service_plan" "asp" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
-  sku {
-    tier     = var.sku_tier
-    size     = var.sku_size
-    capacity = var.worker_count
-  }
-  tags = var.tags
+  sku_name            = var.sku_size
+  os_type             = "Windows"
+  tags                = var.tags
 }

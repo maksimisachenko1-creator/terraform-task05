@@ -8,11 +8,6 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "location" {
-  description = "Location of the Traffic Manager profile"
-  type        = string
-}
-
 variable "routing_method" {
   description = "Routing method for the Traffic Manager profile"
   type        = string
