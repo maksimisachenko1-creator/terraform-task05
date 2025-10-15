@@ -12,11 +12,13 @@ resource "azurerm_traffic_manager_profile" "tm" {
     path     = "/"
   }
   tags = var.tags
-}
 
-resource "azurerm_traffic_manager_azure_endpoint" "tm_endpoints" {
-  count              = length(var.app_service_ids)
-  name               = "endpoint-${count.index}"
-  profile_id         = azurerm_traffic_manager_profile.tm.id
-  target_resource_id = var.app_service_ids[count.index]
+  dynamic "endpoint" {
+    for_each = var.app_service_ids
+    content {
+      name                = "endpoint-${endpoint.key}"
+      target_resource_id  = endpoint.value
+      type                = "AzureEndpoints"
+    }
+  }
 }
