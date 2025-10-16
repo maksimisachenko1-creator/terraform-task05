@@ -22,7 +22,7 @@ module "rg3" {
 module "asp1" {
   source              = "./modules/app_service_plan"
   name                = "cmaz-ya42kk4d-mod5-asp-01"
-  resource_group_name = module.rg1.resource_group_id
+  resource_group_name = module.rg1.resource_group_name
   location            = "East US"
   sku_tier            = "Standard"
   sku_size            = "S1"
@@ -33,7 +33,7 @@ module "asp1" {
 module "asp2" {
   source              = "./modules/app_service_plan"
   name                = "cmaz-ya42kk4d-mod5-asp-02"
-  resource_group_name = module.rg2.resource_group_id
+  resource_group_name = module.rg2.resource_group_name
   location            = "West US"
   sku_tier            = "Standard"
   sku_size            = "S1"
@@ -44,7 +44,7 @@ module "asp2" {
 module "app1" {
   source                = "./modules/app_service"
   name                  = "cmaz-ya42kk4d-mod5-app-01"
-  resource_group_name   = module.rg1.resource_group_id
+  resource_group_name   = module.rg1.resource_group_name
   location              = "East US"
   app_service_plan_id   = module.asp1.app_service_plan_id
   verification_agent_ip = "18.153.146.156" # IP address of the verification agent
@@ -72,7 +72,7 @@ module "app1" {
 module "app2" {
   source                = "./modules/app_service"
   name                  = "cmaz-ya42kk4d-mod5-app-02"
-  resource_group_name   = module.rg2.resource_group_id
+  resource_group_name   = module.rg2.resource_group_name
   location              = "West US"
   app_service_plan_id   = module.asp2.app_service_plan_id
   verification_agent_ip = "18.153.146.156" # IP address of the verification agent
@@ -100,7 +100,7 @@ module "app2" {
 module "traffic_manager" {
   source              = "./modules/traffic_manager"
   name                = "cmaz-ya42kk4d-mod5-traf"
-  resource_group_name = module.rg3.resource_group_id
+  resource_group_name = module.rg3.resource_group_name
   routing_method      = "Performance"
   dns_name            = "cmaz-ya42kk4d-mod5-traf"
   app_service_ids = {

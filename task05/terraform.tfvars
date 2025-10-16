@@ -1,33 +1,27 @@
-# IP address of the verification agent
+# Resource Group names (shortened to meet length and character requirements)
+rg1_name = "cmaz-ya42kk4d-rg-01"
+rg2_name = "cmaz-ya42kk4d-rg-02"
+rg3_name = "cmaz-ya42kk4d-rg-03"
+
+# Other variables remain unchanged
 verification_agent_ip = "18.153.146.156"
+allow_ip_rule_name    = "allow-ip"
+allow_tm_rule_name    = "allow-tm"
 
-# Names for IP restriction rules
-allow_ip_rule_name = "allow-ip"
-allow_tm_rule_name = "allow-tm"
+app1_name = "cmaz-ya42kk4d-app-01"
+app2_name = "cmaz-ya42kk4d-app-02"
 
-# App Service names
-app1_name = "cmaz-ya42kk4d-mod5-app-01"
-app2_name = "cmaz-ya42kk4d-mod5-app-02"
-
-# App Service Plan names and configurations
-asp1_name         = "cmaz-ya42kk4d-mod5-asp-01"
+asp1_name         = "cmaz-ya42kk4d-asp-01"
 asp1_worker_count = 2
 asp1_sku          = "S1"
 
-asp2_name         = "cmaz-ya42kk4d-mod5-asp-02"
+asp2_name         = "cmaz-ya42kk4d-asp-02"
 asp2_worker_count = 1
 asp2_sku          = "S1"
 
-# Resource Group names
-rg1_name = "cmaz-ya42kk4d-mod5-rg-01"
-rg2_name = "cmaz-ya42kk4d-mod5-rg-02"
-rg3_name = "cmaz-ya42kk4d-mod5-rg-03"
-
-# Traffic Manager profile
-traffic_manager_name   = "cmaz-ya42kk4d-mod5-traf"
+traffic_manager_name   = "cmaz-ya42kk4d-traf"
 traffic_manager_method = "Performance"
 
-# Tags
 tags = {
   Creator = "maksim_isachenko1@epam.com"
 }
