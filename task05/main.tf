@@ -37,7 +37,7 @@ module "asp2" {
   location            = "West US"
   sku_tier            = "Standard"
   sku_size            = "S1"
-  worker_count        = 1
+  worker_count        = 2
   tags                = var.tags
 }
 
@@ -64,6 +64,13 @@ module "app1" {
       service_tag = "AzureTrafficManager"
       action      = "Allow"
       priority    = 200
+    },
+    {
+      name        = "deny-all-default"
+      ip_address  = "0.0.0.0/0"
+      service_tag = null
+      action      = "Deny"
+      priority    = 2147483647
     }
   ]
   tags = var.tags
@@ -92,6 +99,13 @@ module "app2" {
       service_tag = "AzureTrafficManager"
       action      = "Allow"
       priority    = 200
+    },
+    {
+      name        = "deny-all-default"
+      ip_address  = "0.0.0.0/0"
+      service_tag = null
+      action      = "Deny"
+      priority    = 2147483647
     }
   ]
   tags = var.tags
